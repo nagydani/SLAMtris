@@ -652,6 +652,8 @@ newgame:ld	a,20
 	ld	a,(hl)
 	push	af
 	ld	(hl),20
+	call	showctr
+	res	5,(iy+flags-err_nr)
 	call	showcrd
 	pop	af
 	ld	(delay),a
@@ -755,6 +757,7 @@ mainsp:	defs	2
 	include "shapes.asm"
 	include	"midi.asm"
 	include	"credits.asm"
+	include	"scroll.asm"
 	include	"levels.asm"
 
 combo:	equ	$D900
