@@ -1,6 +1,7 @@
 ; System variables
 bank_m:		equ	$5B5C
 last_k:		equ	$5C08
+repdel:		equ	$5C09
 chars:		equ	$5C36
 err_nr:		equ	$5C3A
 flags:		equ	$5C3B
@@ -233,7 +234,6 @@ fade:	ld	bc,$BF3B
 	inc	a
 	cp	10
 	jr	z,nextlv
-	ld	(level),a
 	call	lvlset
 	call	setbg
 	call	sethdr
@@ -618,7 +618,9 @@ brick2:	ld	a,$FE
 	jr	loopc1
 
 
-start:	ld	hl,font - $100
+start:	ld	hl,$030F
+	ld	(repdel),hl
+	ld	hl,font - $100
 	ld	(chars),hl
 	ld	de,(chans)
 	ld	hl,$7800

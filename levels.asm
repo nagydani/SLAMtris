@@ -1,6 +1,7 @@
 levels:	include	"levels/lvloffs.asm"
 
-lvlset:	ld	b,a
+lvlset:	ld	(level),a
+	ld	b,a
 	add	a,a
 	add	a,b
 	ld	c,a
