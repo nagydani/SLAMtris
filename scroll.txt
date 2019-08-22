@@ -1,0 +1,16 @@
+
+CONTROLS:
+
+MOVE   O,P
+ROTATE Z,X
+PAUSE  R
+MUSIC  M
+BACKGR B
+
+
+ HIT ANY
+ KEY TO
+  PLAY
+
+ poehali!
+
