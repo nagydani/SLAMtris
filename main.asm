@@ -5,9 +5,11 @@ repdel:		equ	$5C09
 chars:		equ	$5C36
 err_nr:		equ	$5C3A
 flags:		equ	$5C3B
+mode:		equ	$5C41
 bordcr:		equ	$5C48
 chans:		equ	$5C4F
 stkend:		equ	$5C65
+flags2:		equ	$5C6A
 frames:		equ	$5C78
 s_posn:		equ	$5C88
 membot:		equ	$5C92
@@ -281,21 +283,21 @@ nextt:	defb	$03, $00
 	defb	$00, $60
 	defb	$1B, $60
 
-keytab:	defb	"o"
+keytab:	defb	"O"
 	defb	left - $
-	defb	"p"
+	defb	"P"
 	defb	right - $
 	defb	" "
 	defb	hard - $
-	defb	"z"
+	defb	"Z"
 	defb	ccl - $
-	defb	"x"
+	defb	"X"
 	defb	clw - $
-	defb	"b"
+	defb	"B"
 	defb	bgtoggle - $
-	defb	"r"
+	defb	"R"
 	defb	pause - $
-	defb	"m"
+	defb	"M"
 	defb	mute - $
 	defb	0
 
@@ -645,7 +647,9 @@ room_ok:ld	a,2
 	out	(c),a
 newgame:ld	a,20
 	ld	(delay),a
+	set	3,(iy+flags2-err_nr)	; CAPS LOCK
 	xor	a
+	ld	(mode),a		; mode G, E off
 	call	lvlset
 	call	setbg
 	ld	hl,delay
